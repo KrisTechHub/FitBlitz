@@ -8,8 +8,14 @@ type Props = {
     setSelectedPage: (value: SelectedPage) => void;
 }
 
+interface FormInputs {
+    name: string;
+    email: string;
+    message: string;
+}
+
 const ContactUs = ({ setSelectedPage }: Props) => {
-    const { register, trigger, control, formState: { errors }} = useForm();
+    const { register, reset, trigger, control, formState: { errors }} = useForm<FormInputs>();
     const formAction = import.meta.env.VITE_FORM_ACTION;
     const inputStyles = `mt-5 w-full rounded-lg bg-primary-300
         px-5 py-3 placeholder-white`;
@@ -19,8 +25,11 @@ const ContactUs = ({ setSelectedPage }: Props) => {
         const isValid = await trigger();
         if (!isValid) {
             e.preventDefault();
-
         }
+        alert('Thank you for your message. We will get back to you shortly.')
+        setTimeout(() => {
+            reset()
+        }, 1000)
     }
 
     return (
@@ -57,8 +66,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                     hidden: { opacity: 0, y: 50 },
                     visible: { opacity: 1, y: 0 },
                     }} > 
-                        <Form target="_blank" onSubmit={onSubmit} method="post" action={formAction} control={control}
-                        onSuccess={() => alert('Thank you for your message. Will get back to you shortly.')}
+                        <Form onSubmit={onSubmit} method="post" action={formAction} control={control}
                         onError={() => alert('Sending your message failed. Please try again.')}>
                             <input className={`${inputStyles} -mt-5`} type="text" placeholder="NAME" {...register('name', {required: true, maxLength: 100})} />
                                 {errors.name && (
