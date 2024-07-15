@@ -1,6 +1,6 @@
 import { SelectedPage } from "@/shared/types";
 import { motion } from "framer-motion";
-import { useForm, Form } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import HText from "@/shared/HText";
 import ContactUsGraphic from '@/assets/ContactUsPageGraphic.png'
 
