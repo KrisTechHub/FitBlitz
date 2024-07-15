@@ -15,8 +15,9 @@ interface FormInputs {
 }
 
 const ContactUs = ({ setSelectedPage }: Props) => {
-    const { register, reset, trigger, control, formState: { errors }} = useForm<FormInputs>();
+    const { register, reset, trigger, formState: { errors }} = useForm<FormInputs>();
     const formAction = import.meta.env.VITE_FORM_ACTION;
+    console.log(formAction);
     const inputStyles = `mt-5 w-full rounded-lg bg-primary-300
         px-5 py-3 placeholder-white`;
     const errorStyle = ' text-primary-500';
@@ -56,7 +57,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 </motion.div>
 
                 {/* FORM AND IMAGE */}
-                <div className="mt-10 justify-between gap-8 md:flex">
+                <div className="mt-10 justify-between gap-16 md:flex">
                     <motion.div className="mt-10 basis-3/5 md:mt-0"
                     initial="hidden"
                     whileInView="visible"
@@ -66,9 +67,8 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                     hidden: { opacity: 0, y: 50 },
                     visible: { opacity: 1, y: 0 },
                     }} > 
-                        <Form onSubmit={onSubmit} method="post" action={formAction} control={control}
-                        onError={() => alert('Sending your message failed. Please try again.')}>
-                            <input className={`${inputStyles} -mt-5`} type="text" placeholder="NAME" {...register('name', {required: true, maxLength: 100})} />
+                        <form onSubmit={onSubmit} method="post" action={formAction} target="_blank">
+                            <input className={`${inputStyles} mt-0`} type="text" placeholder="NAME" {...register('name', {required: true, maxLength: 100})} />
                                 {errors.name && (
                                     <p className={errorStyle}>
                                         {errors.name.type === 'required' && 'This field is required.'}
@@ -95,11 +95,11 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                                 )}
                             
                             <button type="submit" className="mt-5 rounded-lg bg-secondary-500 px-20 py-3 transition duration-500 hover:text-white">SUBMIT</button>
-                        </Form>
+                        </form>
                     </motion.div>
 
 
-                <motion.div className="relative mt-16 basis-2/5 md:mt-0"
+                <motion.div className="relative mt-11 basis-2/5 md:mt-0"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
@@ -108,7 +108,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 hidden: { opacity: 0, y: 50 },
                 visible: { opacity: 1, y: 0 },
                 }}>     
-                    <div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-evolvetext">
+                    <div className="w-full before:absolute before:-bottom-20 before:-right-10 before:z-[-1] md:before:content-transformtext">
                         <img className="w-full" alt="contact-us-page-graphic" src={ContactUsGraphic} />
                     </div>     
                 </motion.div>
