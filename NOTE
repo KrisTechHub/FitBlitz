@@ -1,0 +1,12 @@
+1. npm create vite@latest | choose react and typescript
+2. Install dependences as you see in package.json
+3. Delete all existing codes from vite react | Like App.tsx contents, App.css file, index.css contents
+4. Configure vite.config.ts file | Like using @component/filename.ext on importing files/components
+5. Configure tsconfig.json file | to accept paths
+6. Install taiwlind extensions and tailwind for vite react
+7. Install prettier and prettier tailwind | Create prettier config file
+8. Update tailwind.config.js to add custom classes for css
+9. 
+
+A fitness web page project mainly built using React, Typescript, Tailwind CSS. 
+Tech stacks: React, Vite, Typescript, Tailwind
