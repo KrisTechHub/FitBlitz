@@ -7,5 +7,10 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }] //use @/components/filename.ext in importing of components or anything from the src folder 
-  },  
+  },
+  server: {
+    host: true,
+    strictPort: true,
+    port: 8000,
+  },
 })
